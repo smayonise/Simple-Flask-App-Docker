@@ -1,22 +1,24 @@
-# Use the official lightweight Python image
+# Use the official Python 3.9 slim image
 FROM python:3.9-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Install dependencies
+# Copy dependencies
 COPY requirements.txt /app/
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project
+# Copy the rest of the app code
 COPY . /app/
 
-# Expose the port Flask runs on
-EXPOSE 5000
+# Expose the port the app runs on
+EXPOSE 5070
 
-# Run the application
+# Command to run the app
 CMD ["python", "app.py"]
